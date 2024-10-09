@@ -1,4 +1,4 @@
-package org.example.notes;
+package org.example.notes.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,15 +33,15 @@ public class SelectWorkspaceController {
 
     private void loadMainScreen(File selectedDirectory) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/notes/main-view.fxml"));
             Parent newRoot = loader.load();
 
             MainController mainController = loader.getController();
             mainController.setDirectory(selectedDirectory);
 
-            Scene currentScene = getCurrentStage().getScene();
-            currentScene.setRoot(newRoot);
-            getCurrentStage().show();
+            Stage currentStage = getCurrentStage();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
